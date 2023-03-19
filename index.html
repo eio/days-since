@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Days Since</title>
+  </head>
+  <style>
+    body {
+      font-family: monospace;
+      text-align: center;
+      font-size: 400%;
+    }
+    label, input, button {
+      font-family: monospace;
+      text-align: center;
+      font-size: 100%;
+      width: 90%;
+      height: 20vh;
+    }
+    #result {
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <label for="input-date"><b>Choose a date:</b></label>
+    <input type="date" id="input-date" value="1992-12-25">
+    <br><br>
+    <button onclick="calculateDays()">Calculate days</button>
+    <br><br>
+    <p id="result"></p>
+    <script>
+      function calculateDays() {
+        var inputDate = new Date(document.getElementById("input-date").value);
+        var today = new Date();
+        var elapsed = Math.floor((today - inputDate) / (1000 * 60 * 60 * 24));
+        if (elapsed > 0) {
+          document.getElementById("result").innerHTML = elapsed + " days have passed since " + inputDate.toDateString();
+        } else {
+          document.getElementById("result").innerHTML = Math.abs(elapsed) + " days until " + inputDate.toDateString();
+        }
+      }
+      // Set the input date to the default date when the page loads
+      // Note that months/days are zero-indexed
+      document.getElementById("input-date").valueAsDate = new Date(2020, 11, 26);
+    </script>
+  </body>
+</html>
